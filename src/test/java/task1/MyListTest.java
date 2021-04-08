@@ -109,4 +109,15 @@ public class MyListTest {
         Product oldValue = products.get(0);
         assertEquals(oldValue, products.set(0, newValue));
     }
+
+    @Test
+    void testValueAfterSettingTheNewOne() {
+        Product newValue = new Product(
+                "new product",
+                BigDecimal.valueOf(999.1321),
+                LocalDate.of(2020, 2, 2)
+        );
+        products.set(0, newValue);
+        assertEquals(newValue, products.get(0));
+    }
 }
