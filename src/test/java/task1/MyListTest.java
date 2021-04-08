@@ -85,6 +85,40 @@ public class MyListTest {
     }
 
     @Test
+    void testValueAddedToTheBeginningOfList() {
+        Product product=new Product(
+                "asd",
+                BigDecimal.valueOf(2222),
+                LocalDate.now()
+        );
+        products.add(0, product);
+        assertEquals(product, products.get(0));
+    }
+
+    @Test
+    void testValueAddedToTheEndOfList() {
+        Product product=new Product(
+                "asd",
+                BigDecimal.valueOf(2222),
+                LocalDate.now()
+        );
+        products.add(products.size(), product);
+        assertEquals(product, products.get(products.size()-1));
+    }
+
+    @Test
+    @DisplayName("insert element in somewhere in the middle of the list")
+    void testValueAddedToTheMiddleOfList() {
+        Product product=new Product(
+                "asd",
+                BigDecimal.valueOf(2222),
+                LocalDate.now()
+        );
+        products.add(3, product);
+        assertEquals(product, products.get(3));
+    }
+
+    @Test
     void testAddingOnTheWrongPosition() {
         Throwable exception = assertThrows(IndexOutOfBoundsException.class,
                 () -> products.add(10, null));
