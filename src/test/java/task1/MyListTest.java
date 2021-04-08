@@ -17,10 +17,10 @@ public class MyListTest {
     @BeforeEach
     void initProducts() {
         products = new MyList<>();
-        Product product = new Product();
-        product.setManufactureDate(LocalDate.now());
         StringBuilder productNameBuilder = new StringBuilder("product#");
         for (int i = 0; i < 5; i++) {
+            Product product = new Product();
+            product.setManufactureDate(LocalDate.now());
             product.setPrice(BigDecimal.valueOf(i));
             product.setName(productNameBuilder.append(i).toString());
             products.add(product);
