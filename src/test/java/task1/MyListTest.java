@@ -9,8 +9,7 @@ import task1.entities.Product;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MyListTest {
     private MyList<Product> products;
@@ -79,5 +78,12 @@ public class MyListTest {
 
         products.add(2, null);
         assertEquals(6, products.size());
+    }
+
+    @Test
+    void testAddingOnTheWrongPosition() {
+        Throwable exception = assertThrows(IndexOutOfBoundsException.class,
+                () -> products.add(10, null));
+        assertEquals("there is no element with index 10", exception.getMessage());
     }
 }
