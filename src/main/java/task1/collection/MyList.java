@@ -55,10 +55,9 @@ public class MyList<T> implements List<T> {
         return false;
     }
 
-
     /**
      * @return iterator of current list
-     * */
+     */
     @Override
     public Iterator<T> iterator() {
         return new Iterator<>() {
@@ -103,8 +102,7 @@ public class MyList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException();
-
+        return Arrays.copyOf(array, numOfElements);
     }
 
     @Override
@@ -112,7 +110,6 @@ public class MyList<T> implements List<T> {
         throw new UnsupportedOperationException();
 
     }
-
 
     /**
      * @param t element to add to the list
