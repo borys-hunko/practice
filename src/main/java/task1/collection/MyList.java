@@ -44,11 +44,11 @@ public class MyList<T> implements List<T> {
     /**
      * @param o searched value
      * @return true if list contains value, false if it doesn't
-     * */
+     */
     @Override
     public boolean contains(Object o) {
-        for (int i=0;i<numOfElements;++i){
-            if (array[i].equals(o)){
+        for (int i = 0; i < numOfElements; ++i) {
+            if (array[i].equals(o)) {
                 return true;
             }
         }
@@ -134,8 +134,8 @@ public class MyList<T> implements List<T> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
-
+        array = (T[]) new Object[INITIAL_CAPACITY];
+        numOfElements = 0;
     }
 
     /**
