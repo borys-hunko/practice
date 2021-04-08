@@ -139,10 +139,19 @@ public class MyList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * check if list contains all elements from given collection
+     * @param c collection to check
+     * @return if list contains all elements of collection
+     * */
     @Override
     public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
-
+        for (var it : c) {
+            if (!contains(it)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
