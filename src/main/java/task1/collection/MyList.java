@@ -6,6 +6,26 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MyList<T> implements List<T> {
+    /**
+     * array which contains elements
+     * */
+    private T array[];
+    /**
+     * number of elements in the list
+     * */
+    private int numOfElements;
+    /**
+     * initial capacity of array
+     * */
+    private static final int INITIAL_CAPACITY = 10;
+
+    /**
+     * initialize array and numOfElements
+     * */
+    public MyList() {
+        array = (T[]) new Object[INITIAL_CAPACITY];
+        numOfElements = 0;
+    }
     @Override
     public int size() {
         throw new UnsupportedOperationException();
