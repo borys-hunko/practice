@@ -145,6 +145,12 @@ public class MyList<T> implements List<T> {
         }
     }
 
+    /**
+     * set new value for element with given index
+     * @param index index of element with new value
+     * @param element new value
+     * @return old value of element with given index
+     * */
     @Override
     public T set(int index, T element) {
         checkIndex(index);
