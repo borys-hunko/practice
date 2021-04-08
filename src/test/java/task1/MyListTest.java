@@ -198,4 +198,19 @@ public class MyListTest {
         products.add(null);
         assertDoesNotThrow(() -> products.size());
     }
+
+    @Test
+    @DisplayName("pass existent in the value. should return its index")
+    void testIndexOfWithExistentElement(){
+        Product product=products.get(2);
+        assertEquals(2,products.indexOf(product));
+    }
+
+    @Test
+    @DisplayName("pass non-existent in the value. should return -1")
+    void testIndexOfWithNonExistentElement(){
+        assertEquals(-1,products.indexOf(null));
+    }
+
+
 }
