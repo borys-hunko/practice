@@ -90,4 +90,11 @@ public class MyListTest {
                 () -> products.add(10, null));
         assertEquals("there is no element with index 10", exception.getMessage());
     }
+
+    @Test
+    void testGetOnIncorrectIndex(){
+        Throwable exception=assertThrows(IndexOutOfBoundsException.class,
+                ()->products.get(1000));
+        assertEquals("no element with index 1000",exception.getMessage());
+    }
 }
