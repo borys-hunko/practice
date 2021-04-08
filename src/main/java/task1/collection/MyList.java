@@ -41,10 +41,18 @@ public class MyList<T> implements List<T> {
         return numOfElements == 0;
     }
 
+    /**
+     * @param o searched value
+     * @return true if list contains value, false if it doesn't
+     * */
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException();
-
+        for (int i=0;i<numOfElements;++i){
+            if (array[i].equals(o)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
