@@ -201,14 +201,26 @@ public class MyListTest {
 
     @Test
     @DisplayName("pass existent value to indexOf. should return its index")
-    void testIndexOfWithExistentElement(){
-        Product product=products.get(2);
-        assertEquals(2,products.indexOf(product));
+    void testIndexOfWithExistentElement() {
+        Product product = products.get(2);
+        assertEquals(2, products.indexOf(product));
     }
 
     @Test
     @DisplayName("pass non-existent value to indexOf. should return -1")
-    void testIndexOfWithNonExistentElement(){
-        assertEquals(-1,products.indexOf(null));
+    void testIndexOfWithNonExistentElement() {
+        assertEquals(-1, products.indexOf(null));
+    }
+
+    @Test
+    @DisplayName("pass existent value to remove(Object o). should return true")
+    void testRemovePassingExistentObject() {
+        assertTrue(products.remove(products.get(2)));
+    }
+
+    @Test
+    @DisplayName("pass non-existent value to remove(Object o). should return false")
+    void testRemovePassingNonExistentObject() {
+        assertFalse(products.remove(null));
     }
 }
