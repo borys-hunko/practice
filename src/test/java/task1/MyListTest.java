@@ -56,4 +56,28 @@ public class MyListTest {
         }
         assertEquals(11,products.size());
     }
+
+    @Test
+    @DisplayName("test whether add method insert element in the beginning")
+    void testAddingToTheBeginningOfList(){
+        products.add(0,null);
+        assertEquals(1,products.size());
+    }
+
+    @Test
+    void testAddingToTheEndOfList() {
+        products.add(products.size(), null);
+        assertEquals(1, products.size());
+    }
+
+    @Test
+    @DisplayName("insert element in somewhere in the middle of the list")
+    void testAddingInTheMiddleOfList(){
+        for (int i = 0; i < 5; i++) {
+            products.add(null);
+        }
+
+        products.add(2, null);
+        assertEquals(6, products.size());
+    }
 }
