@@ -177,8 +177,8 @@ public class MyListTest {
 
     @Test
     void testRemovingFromTheEnd() {
-        Product removedProduct = products.remove(products.size()-1);
-        assertNotSame(removedProduct, products.get(products.size()-1));
+        Product removedProduct = products.remove(products.size() - 1);
+        assertNotSame(removedProduct, products.get(products.size() - 1));
         assertEquals(4, products.size());
     }
 
@@ -187,5 +187,15 @@ public class MyListTest {
         Product removedProduct = products.remove(2);
         assertNotSame(removedProduct, products.get(2));
         assertEquals(4, products.size());
+    }
+
+    @Test
+    @DisplayName("remove all elements from the list. its capacity should be 10")
+    void testShrinkingOfCapacityAfterRemove() {
+        for (int i = 0; i < products.size(); ) {
+            products.remove(0);
+        }
+        products.add(null);
+        assertDoesNotThrow(() -> products.size());
     }
 }
