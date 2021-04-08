@@ -23,12 +23,17 @@ public class MyList<T> implements List<T> {
         array = (T[]) new Object[INITIAL_CAPACITY];
         numOfElements = 0;
     }
-
+    /**
+     * @return number of elements in the list
+     * */
     @Override
     public int size() {
         return numOfElements;
     }
 
+    /**
+     * @return if there is elements in the list
+     * */
     @Override
     public boolean isEmpty() {
         return numOfElements==0;
