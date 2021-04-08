@@ -26,9 +26,10 @@ public class MyList<T> implements List<T> {
         array = (T[]) new Object[INITIAL_CAPACITY];
         numOfElements = 0;
     }
+
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return numOfElements;
     }
 
     @Override
