@@ -3,6 +3,7 @@ package task1.collection;
 import java.util.*;
 
 public class MyList<T> implements List<T> {
+    private static final int NOT_FOUND = -1;
     /**
      * array which contains elements
      */
@@ -85,8 +86,12 @@ public class MyList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException();
-
+        int removeIndex = indexOf(o);
+        if (removeIndex == NOT_FOUND) {
+            return false;
+        }
+        remove(removeIndex);
+        return true;
     }
 
     @Override
@@ -230,7 +235,7 @@ public class MyList<T> implements List<T> {
                 return i;
             }
         }
-        return -1;
+        return NOT_FOUND;
     }
 
     /**
@@ -242,12 +247,12 @@ public class MyList<T> implements List<T> {
      */
     @Override
     public int lastIndexOf(Object o) {
-        for (int i = numOfElements-1; i >= 0; --i) {
+        for (int i = numOfElements - 1; i >= 0; --i) {
             if (array[i].equals(o)) {
                 return i;
             }
         }
-        return -1;
+        return NOT_FOUND;
     }
 
     @Override
