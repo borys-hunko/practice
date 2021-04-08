@@ -8,6 +8,8 @@ import task1.entities.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -222,5 +224,61 @@ public class MyListTest {
     @DisplayName("pass non-existent value to remove(Object o). should return false")
     void testRemovePassingNonExistentObject() {
         assertFalse(products.remove(null));
+    }
+
+    @Test
+    @DisplayName("call next(). should return first element")
+    void testIteratorsNext() {
+        Iterator<Product> iterator = products.iterator();
+        assertEquals(products.get(0), iterator.next());
+    }
+
+    @Test
+    @DisplayName("call next when list is empty. should throw exception")
+    void testIteratorsNextOfEmptyList() {
+        Iterator<Product> iterator = products.iterator();
+        products.clear();
+        assertThrows(NoSuchElementException.class, iterator::next);
+    }
+
+    @Test
+    @DisplayName("call hasNext(). should return true")
+    void testIteratorsHasNext() {
+        Iterator<Product> iterator = products.iterator();
+        assertEquals(products.get(0), iterator.next());
+    }
+
+    @Test
+    @DisplayName("call hasNext when list is empty. should return false")
+    void testIteratorsHasNextOfEmptyList() {
+        Iterator<Product> iterator = products.iterator();
+        products.clear();
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    @DisplayName("test iterators in foreach loop")
+    void testIteratorInLoop() {
+        int index = 0;
+        for (Product p : products) {
+            assertEquals(products.get(index), p);
+            ++index;
+        }
+    }
+
+    @Test
+    @DisplayName("call next(), then call remove(). should remove first element")
+    void testIteratorRemoveAfterNextInvocation() {
+        Iterator<Product> iterator = products.iterator();
+        Product removedProduct = iterator.next();
+        iterator.remove();
+        assertNotSame(removedProduct, products.get(0));
+    }
+
+    @Test
+    @DisplayName("call remove() without next(). should throw exception")
+    void testIteratorRemoveWithoutNextCalling() {
+        Iterator<Product> iterator = products.iterator();
+        assertThrows(NoSuchElementException.class, iterator::remove);
     }
 }
