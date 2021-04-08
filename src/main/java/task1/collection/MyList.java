@@ -34,7 +34,7 @@ public class MyList<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException();
+        return numOfElements==0;
     }
 
     @Override
