@@ -168,4 +168,24 @@ public class MyListTest {
         assertEquals(oldValue, products.remove(0));
     }
 
+    @Test
+    void testRemovingFromTheBeginning() {
+        Product removedProduct = products.remove(0);
+        assertNotSame(removedProduct, products.get(0));
+        assertEquals(4, products.size());
+    }
+
+    @Test
+    void testRemovingFromTheEnd() {
+        Product removedProduct = products.remove(products.size()-1);
+        assertNotSame(removedProduct, products.get(products.size()-1));
+        assertEquals(4, products.size());
+    }
+
+    @Test
+    void testRemovingFromTheMiddle() {
+        Product removedProduct = products.remove(2);
+        assertNotSame(removedProduct, products.get(2));
+        assertEquals(4, products.size());
+    }
 }
