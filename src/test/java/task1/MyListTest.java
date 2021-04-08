@@ -86,7 +86,7 @@ public class MyListTest {
 
     @Test
     void testValueAddedToTheBeginningOfList() {
-        Product product=new Product(
+        Product product = new Product(
                 "asd",
                 BigDecimal.valueOf(2222),
                 LocalDate.now()
@@ -97,19 +97,19 @@ public class MyListTest {
 
     @Test
     void testValueAddedToTheEndOfList() {
-        Product product=new Product(
+        Product product = new Product(
                 "asd",
                 BigDecimal.valueOf(2222),
                 LocalDate.now()
         );
         products.add(products.size(), product);
-        assertEquals(product, products.get(products.size()-1));
+        assertEquals(product, products.get(products.size() - 1));
     }
 
     @Test
     @DisplayName("insert element in somewhere in the middle of the list")
     void testValueAddedToTheMiddleOfList() {
-        Product product=new Product(
+        Product product = new Product(
                 "asd",
                 BigDecimal.valueOf(2222),
                 LocalDate.now()
@@ -127,10 +127,10 @@ public class MyListTest {
 
     @Test
     @DisplayName("test get method when incorrect index passed")
-    void testGetOnIncorrectIndex(){
-        Throwable exception=assertThrows(IndexOutOfBoundsException.class,
-                ()->products.get(1000));
-        assertEquals("no element with index 1000",exception.getMessage());
+    void testGetOnIncorrectIndex() {
+        Throwable exception = assertThrows(IndexOutOfBoundsException.class,
+                () -> products.get(1000));
+        assertEquals("no element with index 1000", exception.getMessage());
     }
 
     @Test
@@ -161,4 +161,11 @@ public class MyListTest {
                 () -> products.set(1000, null));
         assertEquals("no element with index 1000", exception.getMessage());
     }
+
+    @Test
+    void testValueReturnedByRemove() {
+        Product oldValue = products.get(0);
+        assertEquals(oldValue, products.remove(0));
+    }
+
 }
