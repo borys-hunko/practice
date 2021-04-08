@@ -1,9 +1,6 @@
 package task1.collection;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class MyList<T> implements List<T> {
     /**
@@ -61,10 +58,27 @@ public class MyList<T> implements List<T> {
 
     }
 
+
+    /**
+     * @param t element to add to the list
+     * @return true if method added element successfully
+     * */
     @Override
     public boolean add(T t) {
-        throw new UnsupportedOperationException();
+        if(numOfElements==array.length){
+            allocateMemoryForArray(array,(int)(array.length*1.5));
+        }
+        array[numOfElements]=t;
+        numOfElements++;
+        return true;
+    }
 
+    /**
+     * @param array array to be increased in size
+     * @param newSize new size of array
+     * */
+    private void allocateMemoryForArray(T[] array,int newSize) {
+        this.array= Arrays.copyOf(array,newSize);
     }
 
     @Override
