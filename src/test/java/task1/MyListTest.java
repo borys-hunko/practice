@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import task1.collection.MyList;
 import task1.entities.Product;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,5 +30,15 @@ public class MyListTest {
     @DisplayName("test isEmpty()")
     void testIsEmpty(){
         assertTrue(products.isEmpty(),"list must be empty");
+    }
+
+    @Test
+    @DisplayName("test add method. add element on one to list")
+    void testAddingOneElementShouldReturnTrue(){
+        Product product=new Product();
+        product.setName("Pr");
+        product.setPrice(BigDecimal.valueOf(122));
+        product.setManufactureDate(LocalDate.of(2021,1,1));
+        assertTrue(products.add(product));
     }
 }
