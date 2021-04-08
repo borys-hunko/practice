@@ -98,4 +98,15 @@ public class MyListTest {
                 ()->products.get(1000));
         assertEquals("no element with index 1000",exception.getMessage());
     }
+
+    @Test
+    void testReturnedValueOfSet() {
+        Product newValue = new Product(
+                "new product",
+                BigDecimal.valueOf(999.1321),
+                LocalDate.of(2020, 2, 2)
+        );
+        Product oldValue = products.get(0);
+        assertEquals(oldValue, products.set(0, newValue));
+    }
 }
