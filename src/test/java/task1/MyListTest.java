@@ -120,4 +120,11 @@ public class MyListTest {
         products.set(0, newValue);
         assertEquals(newValue, products.get(0));
     }
+
+    @Test
+    void testPassingIncorrectIndexToSet() {
+        Throwable exception = assertThrows(IndexOutOfBoundsException.class,
+                () -> products.set(1000, null));
+        assertEquals("no element with index 1000", exception.getMessage());
+    }
 }
