@@ -9,6 +9,7 @@ import task1.entities.Product;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -280,5 +281,17 @@ public class MyListTest {
     void testIteratorRemoveWithoutNextCalling() {
         Iterator<Product> iterator = products.iterator();
         assertThrows(NoSuchElementException.class, iterator::remove);
+    }
+
+    @Test
+    void testContainsAllShouldReturnTrue(){
+        List<Product> list=List.of(products.get(0),products.get(2));
+        assertTrue(products.containsAll(list));
+    }
+
+    @Test
+    void testContainsAllShouldReturnFalse(){
+        List<Product> list=List.of(products.get(0),new Product());
+        assertFalse(products.containsAll(list));
     }
 }
