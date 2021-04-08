@@ -17,65 +17,69 @@ public class MyListTest {
     @BeforeEach
     void initProducts() {
         products = new MyList<>();
+        Product product = new Product();
+        product.setManufactureDate(LocalDate.now());
+        StringBuilder productNameBuilder = new StringBuilder("product#");
+        for (int i = 0; i < 5; i++) {
+            product.setPrice(BigDecimal.valueOf(i));
+            product.setName(productNameBuilder.append(i).toString());
+            products.add(product);
+        }
     }
 
     @Test
     @DisplayName("test size() after initialization")
-    void testSizeAfterInit(){
-        assertEquals(0,products.size(),"should return 0");
+    void testSizeAfterInit() {
+        assertEquals(5, products.size(), "should return 0");
     }
 
     @Test
     @DisplayName("test isEmpty()")
-    void testIsEmpty(){
-        assertTrue(products.isEmpty(),"list must be empty");
+    void testIsEmpty() {
+        assertFalse(products.isEmpty(), "list must be empty");
     }
 
     @Test
     @DisplayName("test add method. add element on one to list")
-    void testAddingOneElementShouldReturnTrue(){
-        Product product=new Product();
+    void testAddingOneElementShouldReturnTrue() {
+        Product product = new Product();
         product.setName("Pr");
         product.setPrice(BigDecimal.valueOf(122));
-        product.setManufactureDate(LocalDate.of(2021,1,1));
+        product.setManufactureDate(LocalDate.of(2021, 1, 1));
         assertTrue(products.add(product));
     }
 
     @Test
-    void testSizeAfterAddingElement(){
+    @DisplayName("test whether add method increases size of list")
+    void testSizeAfterAddingElement() {
         products.add(null);
-        assertEquals(1,products.size());
+        assertEquals(6, products.size());
     }
 
     @Test
-    @DisplayName("test whether add method increases capacity of array in the list")
-    void testMemoryAllocationInAdd(){
+    @DisplayName("test whether add method increases size of list")
+    void testMemoryAllocationInAdd() {
         for (int i = 0; i < 11; i++) {
             products.add(null);
         }
-        assertEquals(11,products.size());
+        assertEquals(16, products.size());
     }
 
     @Test
-    @DisplayName("test whether add method insert element in the beginning")
-    void testAddingToTheBeginningOfList(){
-        products.add(0,null);
-        assertEquals(1,products.size());
+    void testAddingToTheBeginningOfList() {
+        products.add(0, null);
+        assertEquals(6, products.size());
     }
 
     @Test
     void testAddingToTheEndOfList() {
         products.add(products.size(), null);
-        assertEquals(1, products.size());
+        assertEquals(6, products.size());
     }
 
     @Test
     @DisplayName("insert element in somewhere in the middle of the list")
-    void testAddingInTheMiddleOfList(){
-        for (int i = 0; i < 5; i++) {
-            products.add(null);
-        }
-
+    void testAddingToTheMiddleOfList() {
         products.add(2, null);
         assertEquals(6, products.size());
     }
