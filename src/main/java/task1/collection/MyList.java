@@ -140,10 +140,21 @@ public class MyList<T> implements List<T> {
 
     }
 
+    /**
+     * add element on particular position
+     * @param index index of array cell on which elemnt will be inserted
+     * @param element element to be added
+     * */
     @Override
     public void add(int index, T element) {
-        throw new UnsupportedOperationException();
-
+        if (numOfElements == array.length) {
+            allocateMemoryForArray(array, (int) (array.length * 1.5));
+        }
+        System.arraycopy(array, index,
+                array, index + 1,
+                numOfElements - index);
+        array[index] = element;
+        ++numOfElements;
     }
 
     @Override
