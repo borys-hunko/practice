@@ -70,11 +70,7 @@ public class MyList<T> implements List<T> {
      * */
     @Override
     public boolean add(T t) {
-        if(numOfElements==array.length){
-            allocateMemoryForArray(array,(int)(array.length*1.5));
-        }
-        array[numOfElements]=t;
-        numOfElements++;
+        add(numOfElements, t);
         return true;
     }
 
