@@ -147,6 +147,7 @@ public class MyList<T> implements List<T> {
      * */
     @Override
     public void add(int index, T element) {
+        checkIndexForAdd(index);
         if (numOfElements == array.length) {
             allocateMemoryForArray(array, (int) (array.length * 1.5));
         }
@@ -155,6 +156,16 @@ public class MyList<T> implements List<T> {
                 numOfElements - index);
         array[index] = element;
         ++numOfElements;
+    }
+
+    /**
+     * check if index is correct for add methods
+     * @param index index of element
+     * */
+    private void checkIndexForAdd(int index) {
+        if (index < 0 || index > numOfElements) {
+            throw new IndexOutOfBoundsException("there is no element with index " + index);
+        }
     }
 
     @Override
