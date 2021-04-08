@@ -208,7 +208,7 @@ public class MyList<T> implements List<T> {
             --newSize;
         }
         if (index < numOfElements - 1) {
-            int lengthOfSubArray=newSize-index-1;//length of copied sub-array
+            int lengthOfSubArray = newSize - index - 1;//length of copied sub-array
             System.arraycopy(array, index + 1, array, index, lengthOfSubArray);
         }
         array[numOfElements] = null;
@@ -216,10 +216,20 @@ public class MyList<T> implements List<T> {
         return oldValue;
     }
 
+    /**
+     * search for items and return its index
+     * @param o sought value
+     * @return index of first appearance of element equal to the passed one
+     * or -1 if there is no such element
+     * */
     @Override
     public int indexOf(Object o) {
-        throw new UnsupportedOperationException();
-
+        for (int i = 0; i < numOfElements; ++i) {
+            if (array[i].equals(o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
