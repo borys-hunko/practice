@@ -124,10 +124,14 @@ public class MyList<T> implements List<T> {
 
     }
 
+    /**
+     * return element with given index
+     * @param index index of needed elemnt
+     * @return element with given index
+     * */
     @Override
     public T get(int index) {
-        throw new UnsupportedOperationException();
-
+        return array[index];
     }
 
     @Override
