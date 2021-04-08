@@ -218,10 +218,11 @@ public class MyList<T> implements List<T> {
 
     /**
      * search for items and return its index
+     *
      * @param o sought value
      * @return index of first appearance of element equal to the passed one
      * or -1 if there is no such element
-     * */
+     */
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < numOfElements; ++i) {
@@ -232,10 +233,21 @@ public class MyList<T> implements List<T> {
         return -1;
     }
 
+    /**
+     * search for items and return last index of its appearance
+     *
+     * @param o sought value
+     * @return last index of element equal to the passed one
+     * or -1 if there is no such element
+     */
     @Override
     public int lastIndexOf(Object o) {
-        throw new UnsupportedOperationException();
-
+        for (int i = numOfElements-1; i >= 0; --i) {
+            if (array[i].equals(o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
