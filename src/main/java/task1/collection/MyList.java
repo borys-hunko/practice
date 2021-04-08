@@ -131,7 +131,18 @@ public class MyList<T> implements List<T> {
      * */
     @Override
     public T get(int index) {
+        checkIndex(index);
         return array[index];
+    }
+
+    /**
+     * check index for being more >=0 and less then size
+     * @param index index to be checked
+     * */
+    private void checkIndex(int index) {
+        if (index<0 || index>=numOfElements){
+            throw new IndexOutOfBoundsException("no element with index "+index);
+        }
     }
 
     @Override
