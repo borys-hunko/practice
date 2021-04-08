@@ -55,10 +55,50 @@ public class MyList<T> implements List<T> {
         return false;
     }
 
+
+    /**
+     * @return iterator of current list
+     * */
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        return new Iterator<>() {
+            private int position = -1;
+            private boolean isRemovable = false;
 
+            /**
+             * check if list has another one element
+             * */
+            @Override
+            public boolean hasNext() {
+                return position < numOfElements - 1;
+            }
+
+            /**
+             * @return next element
+             * @throws NoSuchElementException in case there is no next element
+             * */
+            @Override
+            public T next() {
+                if (position + 1 == numOfElements) {
+                    throw new NoSuchElementException();
+                }
+                isRemovable = true;
+                return array[++position];
+            }
+
+            /**
+             * remove element if next() was called
+             * @throws NoSuchElementException in case next() wasn't called
+             * */
+            @Override
+            public void remove() {
+                if (!isRemovable)
+                    throw new NoSuchElementException();
+                MyList.this.remove(position);
+                isRemovable = false;
+                position--;
+            }
+        };
     }
 
     @Override
