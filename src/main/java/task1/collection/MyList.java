@@ -155,16 +155,42 @@ public class MyList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * add elements of collection in the end of the list
+     * @param c collection of elements to added
+     * @return true if list has changed after calling this method
+     * */
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        throw new UnsupportedOperationException();
-
+        return addAll(numOfElements, c);
     }
 
+    /**
+     * add elements of collection on index
+     * @param c collection of elements to added
+     * @param index index on which collections are added
+     * @return true if list has changed after calling this method
+     * */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        throw new UnsupportedOperationException();
-
+        checkIndexForAdd(index);
+        T[] insertedArray = (T[]) c.toArray();
+        if (insertedArray.length == 0) {
+            return false;
+        }
+        int newNumOfElements = insertedArray.length + numOfElements;
+        if (array.length < newNumOfElements) {
+            allocateMemoryForArray(array, (int) (newNumOfElements * 1.5));
+        }
+        System.arraycopy(array, 0, array, 0, numOfElements - index);
+        System.arraycopy(insertedArray, 0, array, index, insertedArray.length);
+        System.arraycopy(array,
+                index,
+                array,
+                index + insertedArray.length,
+                newNumOfElements-insertedArray.length-index);
+        numOfElements=newNumOfElements;
+        return true;
     }
 
     /**
@@ -179,9 +205,9 @@ public class MyList<T> implements List<T> {
     }
 
     /**
-     * @param c collection containing elements
+     * @param c           collection containing elements
      * @param removeIfHas defines if we remove elements containing in collection
-     * */
+     */
     private boolean removeAllIf(Collection<?> c, boolean removeIfHas) {
         boolean hasChanged = false;
         for (var elementToRemove : c) {
@@ -197,7 +223,7 @@ public class MyList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return removeAllIf(c,false);
+        return removeAllIf(c, false);
     }
 
     @Override
