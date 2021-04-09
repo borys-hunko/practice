@@ -364,7 +364,7 @@ public class MyListTest {
                 ));
         products.addAll(products.size(), insertedProducts);
         int insertedProductsIndex = insertedProducts.size() - 1;
-        for (int i = products.size() - 1; i > products.size()-3; --i) {
+        for (int i = products.size() - 1; i > products.size() - 3; --i) {
             assertEquals(insertedProducts.get(insertedProductsIndex), products.get(i));
             insertedProductsIndex--;
         }
@@ -384,6 +384,48 @@ public class MyListTest {
         for (int i = 2; i < 2 + insertedProducts.size(); ++i) {
             assertEquals(insertedProducts.get(insertedProductsIndex), products.get(i));
             insertedProductsIndex++;
+        }
+    }
+
+    @Test
+    @DisplayName("call next(). should return first element")
+    void testConditionalIteratorsNext() {
+        Iterator<Product> iterator = products.conditionalIterator(
+                product -> product.getPrice().compareTo(BigDecimal.valueOf(2)) > 0);
+        assertEquals(products.get(3), iterator.next());
+    }
+
+    @Test
+    @DisplayName("call next when list is empty. should throw exception")
+    void testConditionalIteratorsWithFalseCondition() {
+        Iterator<Product> iterator = products.conditionalIterator(
+                product -> product.getPrice().equals(BigDecimal.valueOf(-10)));
+        assertThrows(NoSuchElementException.class, iterator::next);
+    }
+
+    @Test
+    @DisplayName("call hasNext(). should return true")
+    void testConditionalIteratorsHasNextWithTrueCondition() {
+        Iterator<Product> iterator = products.conditionalIterator(
+                product -> product.getPrice().compareTo(BigDecimal.valueOf(2))>0);
+        assertTrue(iterator.hasNext());
+    }
+
+    @Test
+    @DisplayName("call hasNext when list is empty. should return false")
+    void testConditionalIteratorsHasNextWithFalseCondition() {
+        Iterator<Product> iterator = products.conditionalIterator(
+                product -> product.getPrice().compareTo(BigDecimal.valueOf(100))==0);
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    @DisplayName("test iterators in foreach loop")
+    void testConditionalIteratorInLoop() {
+        int index = 0;
+        for (Product p : products) {
+            assertEquals(products.get(index), p);
+            ++index;
         }
     }
 }
