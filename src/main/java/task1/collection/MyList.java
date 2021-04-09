@@ -101,15 +101,23 @@ public class MyList<T> implements List<T> {
         };
     }
 
+    /**
+     * @return list as array
+     */
     @Override
     public Object[] toArray() {
         return Arrays.copyOf(array, numOfElements);
     }
 
+    /**
+     * Returns an array containing all of the elements in this list in proper sequence (from first to last element);
+     * the runtime type of the returned array is that of the specified array.
+     */
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        throw new UnsupportedOperationException();
-
+        a = (T1[]) new Object[numOfElements];
+        System.arraycopy(array, 0, a, 0, numOfElements);
+        return a;
     }
 
     /**
@@ -380,13 +388,15 @@ public class MyList<T> implements List<T> {
 
     /**
      * pick elements which are suitable by condition
+     *
      * @param condition condition for picking element
-     * */
+     */
     public Iterator<T> conditionalIterator(Predicate<T> condition) {
         return new Iterator<T>() {
             private int position = 0;
             private int previousPosition = 0;
             private boolean isRemovable = false;
+
             /**
              * @return true if there is suitable by condition element
              * */
@@ -399,6 +409,7 @@ public class MyList<T> implements List<T> {
                 }
                 return false;
             }
+
             /**
              * @return next suitable element
              * @throws NoSuchElementException if there is no suitable element
