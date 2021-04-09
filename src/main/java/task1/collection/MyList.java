@@ -93,7 +93,7 @@ public class MyList<T> implements List<T> {
             @Override
             public void remove() {
                 if (!isRemovable)
-                    throw new NoSuchElementException();
+                    throw new IllegalStateException();
                 MyList.this.remove(position);
                 isRemovable = false;
                 position--;

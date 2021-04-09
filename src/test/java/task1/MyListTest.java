@@ -281,7 +281,7 @@ public class MyListTest {
     @DisplayName("call remove() without next(). should throw exception")
     void testIteratorRemoveWithoutNextCalling() {
         Iterator<Product> iterator = products.iterator();
-        assertThrows(NoSuchElementException.class, iterator::remove);
+        assertThrows(IllegalStateException.class, iterator::remove);
     }
 
     @Test
