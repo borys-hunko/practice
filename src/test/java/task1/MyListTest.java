@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import task1.collection.MyList;
+import task1.entities.Alcohol;
 import task1.entities.Product;
 
 import java.math.BigDecimal;
@@ -293,5 +294,28 @@ public class MyListTest {
     void testContainsAllShouldReturnFalse(){
         List<Product> list=List.of(products.get(0),new Product());
         assertFalse(products.containsAll(list));
+    }
+
+    @Test
+    void testRemoveAll(){
+        List<Product> removedItems=List.of(products.get(0),products.get(2),products.get(3));
+        products.removeAll(removedItems);
+        for (Product p:products){
+            assertFalse(removedItems.contains(p));
+        }
+    }
+
+    @Test
+    @DisplayName("pass existing in the list elements to removeAll. it should return true")
+    void testReturnedValueOfRemoveAllIfListHasChanged(){
+        List<Product> removedItems=List.of(products.get(0),products.get(2),products.get(3));
+        assertTrue(products.removeAll(removedItems));
+    }
+
+    @Test
+    @DisplayName("pass non-existing in the list elements to removeAll. it should return false")
+    void testReturnedValueOfRemoveAllIfListHasNotChanged(){
+        List<Product> removedItems=List.of(new Product(),new Alcohol());
+        assertFalse(products.removeAll(removedItems));
     }
 }
