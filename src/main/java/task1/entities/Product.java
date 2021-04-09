@@ -9,17 +9,12 @@ public class Product {
     private BigDecimal price;
     private LocalDate manufactureDate;
 
-    /**
-     * constant which defines precision of price
-     * */
-    private static final int PRICE_PRECISION=2;
-
     public Product() {
     }
 
     public Product(String name, BigDecimal price, LocalDate manufactureDate) {
         this.name = name;
-        this.price = price.movePointRight(PRICE_PRECISION);//set precision for price
+        this.price = price;//set precision for price
         this.manufactureDate = manufactureDate;
     }
 
@@ -36,7 +31,7 @@ public class Product {
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price.movePointRight(PRICE_PRECISION);//set precision for price
+        this.price = price;//set precision for price
     }
 
     public LocalDate getManufactureDate() {
@@ -56,16 +51,5 @@ public class Product {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(manufactureDate, product.manufactureDate);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, price, manufactureDate);
-    }
 }
