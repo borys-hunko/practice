@@ -141,9 +141,10 @@ public class MyList<T> implements List<T> {
 
     /**
      * check if list contains all elements from given collection
+     *
      * @param c collection to check
      * @return if list contains all elements of collection
-     * */
+     */
     @Override
     public boolean containsAll(Collection<?> c) {
         for (var it : c) {
@@ -168,8 +169,16 @@ public class MyList<T> implements List<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
-
+        boolean hasChanged = false;
+        for (var elementToRemove : c) {
+            for (int j = 0; j < numOfElements; ++j) {
+                if (Objects.equals(elementToRemove, array[j])) {
+                    remove(j);
+                    hasChanged = true;
+                }
+            }
+        }
+        return hasChanged;
     }
 
     @Override
