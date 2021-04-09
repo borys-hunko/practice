@@ -285,46 +285,105 @@ public class MyListTest {
     }
 
     @Test
-    void testContainsAllShouldReturnTrue(){
-        List<Product> list=List.of(products.get(0),products.get(2));
+    void testContainsAllShouldReturnTrue() {
+        List<Product> list = List.of(products.get(0), products.get(2));
         assertTrue(products.containsAll(list));
     }
 
     @Test
-    void testContainsAllShouldReturnFalse(){
-        List<Product> list=List.of(products.get(0),new Product());
+    void testContainsAllShouldReturnFalse() {
+        List<Product> list = List.of(products.get(0), new Product());
         assertFalse(products.containsAll(list));
     }
 
     @Test
-    void testRemoveAll(){
-        List<Product> removedItems=List.of(products.get(0),products.get(2),products.get(3));
+    void testRemoveAll() {
+        List<Product> removedItems = List.of(products.get(0), products.get(2), products.get(3));
         products.removeAll(removedItems);
-        for (Product p:products){
+        for (Product p : products) {
             assertFalse(removedItems.contains(p));
         }
     }
 
     @Test
     @DisplayName("pass existing in the list elements to removeAll. it should return true")
-    void testReturnedValueOfRemoveAllIfListHasChanged(){
-        List<Product> removedItems=List.of(products.get(0),products.get(2),products.get(3));
+    void testReturnedValueOfRemoveAllIfListHasChanged() {
+        List<Product> removedItems = List.of(products.get(0), products.get(2), products.get(3));
         assertTrue(products.removeAll(removedItems));
     }
 
     @Test
     @DisplayName("pass non-existing in the list elements to removeAll. it should return false")
-    void testReturnedValueOfRemoveAllIfListHasNotChanged(){
-        List<Product> removedItems=List.of(new Product(),new Alcohol());
+    void testReturnedValueOfRemoveAllIfListHasNotChanged() {
+        List<Product> removedItems = List.of(new Product(), new Alcohol());
         assertFalse(products.removeAll(removedItems));
     }
 
     @Test
-    void testRetainAll(){
-        List<Product> items=List.of(this.products.get(0), this.products.get(2), this.products.get(3));
+    void testRetainAll() {
+        List<Product> items = List.of(this.products.get(0), this.products.get(2), this.products.get(3));
         this.products.retainAll(items);
-        for (Product p:items){
+        for (Product p : items) {
             assertTrue(items.contains(p));
+        }
+    }
+
+    @Test
+    @DisplayName("insert collection and check if size has changed")
+    void testAddingAllTo() {
+        List<Product> insertedProducts = List.of(new Product(),
+                new Product("newProd",
+                        BigDecimal.valueOf(100000),
+                        LocalDate.now()
+                ));
+        products.addAll(2, insertedProducts);
+        assertEquals(7, products.size());
+    }
+
+    @Test
+    @DisplayName("check values after adding collection in the beginning")
+    void testValuesAddedToTheBeginningOfList() {
+        List<Product> insertedProducts = List.of(new Product(),
+                new Product("newProd",
+                        BigDecimal.valueOf(100000),
+                        LocalDate.now()
+                ));
+        products.addAll(0, insertedProducts);
+        for (int i = 0; i < insertedProducts.size(); ++i) {
+            assertEquals(insertedProducts.get(i), products.get(i));
+        }
+    }
+
+    @Test
+    @DisplayName("check values after adding collection in the end")
+    void testValuesAddedToTheEndOfList() {
+        List<Product> insertedProducts = List.of(new Product(),
+                new Product("newProd",
+                        BigDecimal.valueOf(100000),
+                        LocalDate.now()
+                ));
+        products.addAll(products.size(), insertedProducts);
+        int insertedProductsIndex = insertedProducts.size() - 1;
+        for (int i = products.size() - 1; i > products.size()-3; --i) {
+            assertEquals(insertedProducts.get(insertedProductsIndex), products.get(i));
+            insertedProductsIndex--;
+        }
+    }
+
+    @Test
+    @DisplayName("insert collection in somewhere in the middle of the list")
+    void testValuesAddedAllToTheMiddleOfList() {
+        List<Product> insertedProducts = List.of(new Product(),
+                new Product("newProd",
+                        BigDecimal.valueOf(100000),
+                        LocalDate.now()
+                ));
+        products.addAll(2, insertedProducts);
+        int insertedProductsIndex = 0;
+
+        for (int i = 2; i < 2 + insertedProducts.size(); ++i) {
+            assertEquals(insertedProducts.get(insertedProductsIndex), products.get(i));
+            insertedProductsIndex++;
         }
     }
 }
