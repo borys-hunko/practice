@@ -167,12 +167,26 @@ public class MyList<T> implements List<T> {
 
     }
 
+    /**
+     * remove all elements containing in the passed collection
+     *
+     * @param c collection of elements to be removed
+     * @return true if list has changed after calling this method
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
+        return removeAllIf(c, true);
+    }
+
+    /**
+     * @param c collection containing elements
+     * @param removeIfHas defines if we remove elements containing in collection
+     * */
+    private boolean removeAllIf(Collection<?> c, boolean removeIfHas) {
         boolean hasChanged = false;
         for (var elementToRemove : c) {
             for (int j = 0; j < numOfElements; ++j) {
-                if (Objects.equals(elementToRemove, array[j])) {
+                if (Objects.equals(elementToRemove, array[j]) == removeIfHas) {
                     remove(j);
                     hasChanged = true;
                 }
