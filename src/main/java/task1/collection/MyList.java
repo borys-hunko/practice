@@ -48,7 +48,7 @@ public class MyList<T> implements List<T> {
     @Override
     public boolean contains(Object o) {
         for (int i = 0; i < numOfElements; ++i) {
-            if (array[i].equals(o)) {
+            if (Objects.equals(array[i], 0)) {
                 return true;
             }
         }
@@ -294,7 +294,7 @@ public class MyList<T> implements List<T> {
     @Override
     public int indexOf(Object o) {
         for (int i = 0; i < numOfElements; ++i) {
-            if (array[i].equals(o)) {
+            if (Objects.equals(array[i], o)) {
                 return i;
             }
         }
@@ -311,7 +311,7 @@ public class MyList<T> implements List<T> {
     @Override
     public int lastIndexOf(Object o) {
         for (int i = numOfElements - 1; i >= 0; --i) {
-            if (array[i].equals(o)) {
+            if (Objects.equals(array[i], o)) {
                 return i;
             }
         }
