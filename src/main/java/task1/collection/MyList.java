@@ -197,8 +197,7 @@ public class MyList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException();
-
+        return removeAllIf(c,false);
     }
 
     @Override
