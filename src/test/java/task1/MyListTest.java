@@ -318,4 +318,13 @@ public class MyListTest {
         List<Product> removedItems=List.of(new Product(),new Alcohol());
         assertFalse(products.removeAll(removedItems));
     }
+
+    @Test
+    void testRetainAll(){
+        List<Product> items=List.of(this.products.get(0), this.products.get(2), this.products.get(3));
+        this.products.retainAll(items);
+        for (Product p:items){
+            assertTrue(items.contains(p));
+        }
+    }
 }
