@@ -1,6 +1,7 @@
 package task1.collection;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class MyList<T> implements List<T> {
     private static final int NOT_FOUND = -1;
@@ -157,9 +158,10 @@ public class MyList<T> implements List<T> {
 
     /**
      * add elements of collection in the end of the list
+     *
      * @param c collection of elements to added
      * @return true if list has changed after calling this method
-     * */
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
         return addAll(numOfElements, c);
@@ -167,10 +169,11 @@ public class MyList<T> implements List<T> {
 
     /**
      * add elements of collection on index
-     * @param c collection of elements to added
+     *
+     * @param c     collection of elements to added
      * @param index index on which collections are added
      * @return true if list has changed after calling this method
-     * */
+     */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
         checkIndexForAdd(index);
@@ -188,8 +191,8 @@ public class MyList<T> implements List<T> {
                 index,
                 array,
                 index + insertedArray.length,
-                newNumOfElements-insertedArray.length-index);
-        numOfElements=newNumOfElements;
+                newNumOfElements - insertedArray.length - index);
+        numOfElements = newNumOfElements;
         return true;
     }
 
@@ -373,6 +376,59 @@ public class MyList<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException();
 
+    }
+
+    /**
+     * pick elements which are suitable by condition
+     * @param condition condition for picking element
+     * */
+    public Iterator<T> conditionalIterator(Predicate<T> condition) {
+        return new Iterator<T>() {
+            private int position = 0;
+            private int previousPosition = 0;
+            private boolean isRemovable = false;
+            /**
+             * @return true if there is suitable by condition element
+             * */
+            @Override
+            public boolean hasNext() {
+                for (int i = position; i < numOfElements; ++i) {
+                    if (condition.test(array[i])) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            /**
+             * @return next suitable element
+             * @throws NoSuchElementException if there is no suitable element
+             * */
+            @Override
+            public T next() {
+                for (int i = position; i < numOfElements; ++i) {
+                    if (condition.test(array[i])) {
+                        previousPosition = position;
+                        position = i;
+                        isRemovable = true;
+                        return array[i];
+                    }
+                }
+                throw new NoSuchElementException();
+            }
+
+            /**
+             * remove current element
+             * @throws IllegalStateException if next wasn't called firstly
+             * */
+            @Override
+            public void remove() {
+                if (!isRemovable)
+                    throw new IllegalStateException();
+                MyList.this.remove(position);
+                isRemovable = false;
+                position = previousPosition;
+            }
+        };
     }
 }
 
