@@ -63,7 +63,7 @@ public class Beverage extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Beverage beverage = (Beverage) o;
-        return Double.compare(beverage.nutritionalValue, nutritionalValue) == 0 && Double.compare(beverage.volume, volume) == 0 && expirationDate.equals(beverage.expirationDate);
+        return Double.compare(beverage.nutritionalValue, nutritionalValue) == 0 && Double.compare(beverage.volume, volume) == 0 && Objects.equals(expirationDate, beverage.expirationDate);
     }
 
     @Override
