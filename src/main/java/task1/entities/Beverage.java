@@ -12,13 +12,14 @@ public class Beverage extends Product {
     public Beverage() {
     }
 
-    public Beverage(String name,
+    public Beverage(long id,
+                    String name,
                     BigDecimal price,
                     LocalDate manufactureDate,
                     LocalDate expirationDate,
                     double nutritionalValue,
                     double volume) {
-        super(name, price, manufactureDate);
+        super(id, name, price, manufactureDate);
         this.expirationDate = expirationDate;
         this.nutritionalValue = nutritionalValue;
         this.volume = volume;

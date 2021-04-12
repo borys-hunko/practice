@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Product {
+    private long id;
     private String name;
     private BigDecimal price;
     private LocalDate manufactureDate;
@@ -12,10 +13,19 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, BigDecimal price, LocalDate manufactureDate) {
+    public Product(long id, String name, BigDecimal price, LocalDate manufactureDate) {
+        this.id = id;
         this.name = name;
-        this.price = price;//set precision for price
+        this.price = price;
         this.manufactureDate = manufactureDate;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

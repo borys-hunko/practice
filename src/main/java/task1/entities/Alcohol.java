@@ -11,7 +11,8 @@ public class Alcohol extends Beverage{
     public Alcohol() {
     }
 
-    public Alcohol(String name,
+    public Alcohol(long id,
+                   String name,
                    BigDecimal price,
                    LocalDate manufactureDate,
                    LocalDate expirationDate,
@@ -19,7 +20,7 @@ public class Alcohol extends Beverage{
                    double volume,
                    double alcoholContent,
                    int minimumAge) {
-        super(name, price, manufactureDate, expirationDate, nutritionalValue, volume);
+        super(id, name, price, manufactureDate, expirationDate, nutritionalValue, volume);
         this.alcoholContent = alcoholContent;
         this.minimumAge = minimumAge;
     }

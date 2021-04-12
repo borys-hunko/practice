@@ -91,6 +91,7 @@ public class MyListTest {
     @Test
     void testValueAddedToTheBeginningOfList() {
         Product product = new Product(
+                123123123,
                 "asd",
                 BigDecimal.valueOf(2222),
                 LocalDate.now()
@@ -102,6 +103,7 @@ public class MyListTest {
     @Test
     void testValueAddedToTheEndOfList() {
         Product product = new Product(
+                123112312,
                 "asd",
                 BigDecimal.valueOf(2222),
                 LocalDate.now()
@@ -114,6 +116,7 @@ public class MyListTest {
     @DisplayName("insert element in somewhere in the middle of the list")
     void testValueAddedToTheMiddleOfList() {
         Product product = new Product(
+                543535,
                 "asd",
                 BigDecimal.valueOf(2222),
                 LocalDate.now()
@@ -140,6 +143,7 @@ public class MyListTest {
     @Test
     void testReturnedValueOfSet() {
         Product newValue = new Product(
+                53545,
                 "new product",
                 BigDecimal.valueOf(999.1321),
                 LocalDate.of(2020, 2, 2)
@@ -151,6 +155,7 @@ public class MyListTest {
     @Test
     void testValueAfterSettingTheNewOne() {
         Product newValue = new Product(
+                34646,
                 "new product",
                 BigDecimal.valueOf(999.1321),
                 LocalDate.of(2020, 2, 2)
@@ -332,7 +337,9 @@ public class MyListTest {
     @DisplayName("insert collection and check if size has changed")
     void testAddingAllTo() {
         List<Product> insertedProducts = List.of(new Product(),
-                new Product("newProd",
+                new Product(
+                        2312312,
+                        "newProd",
                         BigDecimal.valueOf(100000),
                         LocalDate.now()
                 ));
@@ -344,7 +351,9 @@ public class MyListTest {
     @DisplayName("check values after adding collection in the beginning")
     void testValuesAddedToTheBeginningOfList() {
         List<Product> insertedProducts = List.of(new Product(),
-                new Product("newProd",
+                new Product(
+                        12312312,
+                        "newProd",
                         BigDecimal.valueOf(100000),
                         LocalDate.now()
                 ));
@@ -358,7 +367,9 @@ public class MyListTest {
     @DisplayName("check values after adding collection in the end")
     void testValuesAddedToTheEndOfList() {
         List<Product> insertedProducts = List.of(new Product(),
-                new Product("newProd",
+                new Product(
+                        4545,
+                        "newProd",
                         BigDecimal.valueOf(100000),
                         LocalDate.now()
                 ));
@@ -374,7 +385,9 @@ public class MyListTest {
     @DisplayName("insert collection in somewhere in the middle of the list")
     void testValuesAddedAllToTheMiddleOfList() {
         List<Product> insertedProducts = List.of(new Product(),
-                new Product("newProd",
+                new Product(
+                        4343,
+                        "newProd",
                         BigDecimal.valueOf(100000),
                         LocalDate.now()
                 ));
