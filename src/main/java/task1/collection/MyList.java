@@ -48,8 +48,8 @@ public class MyList<T> implements List<T> {
      */
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < numOfElements; ++i) {
-            if (Objects.equals(array[i], o)) {
+        for (T element : this) {
+            if (Objects.equals(element, o)) {
                 return true;
             }
         }
